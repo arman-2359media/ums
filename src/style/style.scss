@@ -4,17 +4,80 @@
     padding: 0;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/lilypads.png')
 }
 
 .topbar{
     background: #75d2cb;
     text-align: center;
-    padding: .5rem 0;
+    padding: 1rem 0;
     font-weight: bold;
-    color: #fff;
+    font-size: 2rem;
+    color: #565656;
+    font-family: 'Lobster', cursive;
 }
 
 .main-container{
-    width: 1100px;
-    margin: 0 auto;
+    width: 900px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    &-items{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        box-shadow: 0 3px 8px #828282;
+        background: #fff;
+        .itemsinfo{
+            width: 80%;
+            margin: 1rem auto 0 auto;
+            color: #525252;
+            position: relative;
+            .close-btn{
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                background: #ff3737;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: all 100ms ease;
+                font-size: .8rem;
+                &:hover{
+                    box-shadow: 0 3px 10px #000;
+                    font-size: .6rem;
+                }
+            }
+            img{
+                width: 100%;
+                height: auto;
+            }
+            p{
+                margin-top: .5rem;
+            }
+        }
+        .edit-btn{
+            width: 100%;
+            text-align: center;
+            padding: .5rem 0;
+            background: #74d3cb;;
+            margin-top: .5rem;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            transition: background 300ms ease;
+            &:hover{
+                background: #34d461;
+            }
+        }
+    }
 }
