@@ -19,11 +19,39 @@ body {
   font-size: 2rem;
   color: #565656;
   font-family: 'Lobster', cursive;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.topbar .add-btn {
+  border: 1px solid grey;
+  padding: .5rem 2rem;
+  margin-left: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #34d461;
+}
+
+.topbar .add-btn:hover {
+  -webkit-box-shadow: 0 3px 8px #828282;
+          box-shadow: 0 3px 8px #828282;
 }
 
 .main-container {
   width: 900px;
-  margin: 2rem auto;
+  margin: 7rem auto 2rem auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -50,7 +78,7 @@ body {
   position: absolute;
   top: -10px;
   right: -10px;
-  background: #ff3737;
+  background: #fd5624;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -68,6 +96,7 @@ body {
   -webkit-transition: all 100ms ease;
   transition: all 100ms ease;
   font-size: .8rem;
+  border: 2px solid #fff;
 }
 
 .main-container-items .itemsinfo .close-btn:hover {
@@ -78,7 +107,9 @@ body {
 
 .main-container-items .itemsinfo img {
   width: 100%;
-  height: auto;
+  height: 215px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .main-container-items .itemsinfo p {
@@ -100,5 +131,56 @@ body {
 
 .main-container-items .edit-btn:hover {
   background: #34d461;
+}
+
+.form-wrapper-fixed {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+
+.form-wrapper-fixed .form-container {
+  padding: 2rem;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.form-wrapper-fixed .form-container .form input {
+  margin-bottom: 1rem;
+  width: 300px;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  display: block;
+}
+
+.form-wrapper-fixed .form-container .form .required {
+  color: red;
+}
+
+.form-wrapper-fixed .form-container .form button {
+  width: 100%;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.form-wrapper-fixed .form-container .close-form {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hide, .hide-delete-btn {
+  display: none !important;
 }
 /*# sourceMappingURL=style.css.map */

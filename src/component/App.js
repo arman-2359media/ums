@@ -1,8 +1,9 @@
 
-import React, {Fragment, useEffect} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 
-import {usersAction} from '../actions/usersAction'
+import {usersAction, showForm, getIndex, clearIndex, editMode, addMode, deleteUser} from '../actions'
+import FormWrapper from './FormWrapper'
 
 
 function App(props){
@@ -11,21 +12,52 @@ function App(props){
         props.usersAction()
     }, [])
 
-    //console.log(props.state) => [...{users}]
+    const editForm = (index) => {
+        props.showForm()
+        props.getIndex(index)
+        props.editMode()
+    }
+
+    const addForm = () => {
+        props.showForm()
+        props.clearIndex()
+        props.addMode()
+    }
+
+    const currentUsers = [...props.state.users]
+    const confirmDeletion = (idxToDelete) =>{
+        if(window.confirm('Delete user?')){
+            props.deleteUser(currentUsers, idxToDelete)
+            console.log(props.isDelete)
+        }else{
+            
+        }
+
+       
+    }
+
+    let isOneLeft = "show-delete-btn"
+    if(props.state.users.length < 2){
+        isOneLeft = "hide-delete-btn"
+    }else{
+        isOneLeft = "show-delete-btn"
+    }
+   
+    //console.log(props.state.users)
 
     //needs to check length, since network request takes time to complete
     //else, Array.map function won't work because there is no array
-    const usersItem = props.state.length > 0 ? (
-        props.state.map(user => {
+    const usersItem = props.state.users.length > 0 ? (
+        props.state.users.map((user, index) => {
             return (
-                <div className="main-container-items" key={user.id}>
+                <div className="main-container-items" key={index}>
                     <div className="itemsinfo">
                         <img src={user.avatar} alt=""/>
                         <p><strong>First Name:</strong> {user.first_name}</p>
                         <p><strong>Last Name:</strong> {user.last_name}</p>
-                        <div className="close-btn">X</div>
+                        <div onClick={()=>confirmDeletion(index)} className={"close-btn "+ isOneLeft}>X</div>
                     </div>
-                    <div className="edit-btn">
+                    <div onClick={() => editForm(index)} className="edit-btn ">
                         EDIT
                     </div>
                 </div>
@@ -35,10 +67,13 @@ function App(props){
         <p>loading...</p>
     )
 
+
     return (
         <Fragment>
+           <FormWrapper/>
             <div className="topbar">
                 User Management System
+                <button className="add-btn" onClick={addForm}>Add user</button>
             </div>
             <div className="main-container">
                {usersItem}
@@ -47,10 +82,14 @@ function App(props){
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (store) => {
     return {
-        state: state.users
+        state: store.usersReducer,
+        userIndexToEdit: store.editUserReducer.userIndexToEdit, 
+        isDelete: store.editUserReducer.isDelete
     }
 }
 
-export default connect(mapStateToProps, {usersAction})(App);
+
+
+export default connect(mapStateToProps, {usersAction, showForm, getIndex, clearIndex, editMode, addMode, deleteUser})(App);

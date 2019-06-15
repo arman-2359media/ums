@@ -6,9 +6,9 @@ import {Provider} from 'react-redux'
 
 import './style/style.css'
 import App from './component/App'
-import {usersReducer} from './reducers/usersReducer'
+import rootReducer from './reducers/rootReducer'
 
-const store = createStore(usersReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={store}>

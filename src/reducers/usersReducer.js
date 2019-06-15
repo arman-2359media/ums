@@ -1,9 +1,9 @@
 
 const initState = {
-    users: ''
+    users: []
 }
 
-export const usersReducer = (state = initState, action ) => {
+const usersReducer = (state = initState, action ) => {
     //console.log(action.payload) => [..{users}]
     if(action.type === 'USERS_FETCH'){
         return {
@@ -11,5 +11,25 @@ export const usersReducer = (state = initState, action ) => {
             users: action.payload
         }
     }
+    if(action.type === 'NEW_USERS_ADD'){
+        return {
+            ...state,
+            users: action.payload
+        }
+    }
+    if(action.type === 'NEW_USERS_EDIT'){
+        return {
+            ...state,
+            users: action.payload
+        }
+    }
+    if(action.type === 'DELETE_USER'){
+        return {
+            ...state,
+            users: action.payload, 
+        }
+   }
     return state;
 }
+
+export default usersReducer
