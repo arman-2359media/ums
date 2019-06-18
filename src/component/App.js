@@ -47,7 +47,20 @@ function App(props){
 
     //needs to check length, since network request takes time to complete
     //else, Array.map function won't work because there is no array
-    const usersItem = props.state.users.length > 0 ? (
+
+    //WELL, actually, you can map an empty array, it's just the initial state needs to be an array
+    //even if the array is empty you can do something like:
+    //const arr = [];
+    //const newarr = arr.map(items => {
+        //console.log(items.i) ==> undefined
+        //that's ok, when network request finished, return the array of data
+    //})
+
+    //UNLESS ! you want to do something before the data arrived
+    //maybe show some loading gifs, then you need to check the length
+    //app will render the gif first => done => componentmount => actions => update state => re-render => done
+
+    const usersItem = //props.state.users.length > 0 ? (
         props.state.users.map((user, index) => {
             return (
                 <div className="main-container-items" key={index}>
@@ -63,9 +76,9 @@ function App(props){
                 </div>
             )
         })
-    ) : (
-        <p>loading...</p>
-    )
+   // ) : (
+       // <p>loading...</p>
+    //)
 
 
     return (
