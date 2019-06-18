@@ -8,5 +8,7 @@ I am testing branch number 2
 master
 =======
 
-This is commit from local repo, for branch one that branched from test-branch
+This is commit from local repo, for branch-one that branched from test-branch
+
+try git commit to branch-one
 
