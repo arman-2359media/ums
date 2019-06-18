@@ -2,6 +2,11 @@ I am testing branch number 1
 
 branch-one
 now this is 3
-=======
+
 I am testing branch number 2
+
 master
+=======
+
+This is commit from local repo, for branch one that branched from test-branch
+
